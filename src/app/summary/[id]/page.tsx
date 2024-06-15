@@ -1,3 +1,8 @@
-export default function Details({params} : any){
-  return <h1>details{params.id}</h1>
+import styles from './Details.module.css'
+import Details from "@/components/Movie/Details";
+
+export default function DetailsMovie({params} : any){
+  return (
+    <div className={styles.details}><Details/></div>
+  )
 }

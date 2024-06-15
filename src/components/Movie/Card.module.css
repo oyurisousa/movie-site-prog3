@@ -39,3 +39,7 @@
   font-size: 1rem;
   margin: 0;
 }
+
+.cast {
+  display: flex;
+}

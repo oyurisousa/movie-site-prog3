@@ -7,14 +7,16 @@ import ButtonCategory from '../Buttons/ButtonCategory'
 import imdb from '../../../public/imdb.svg'
 import api from '@/utils/api'
 import { useEffect } from 'react'
-import Link from 'next/link'
+import { Space_Mono } from 'next/font/google'
 
 interface Movie{
   id: string,
   title: string,
   genres: string[],
   IMDB: number,
-  synopsis: string
+  synopsis: string,
+  director: string,
+  cast: string[]
 }
 
 const movies = async ()=>{
@@ -25,7 +27,7 @@ const movies = async ()=>{
   console.log(data)
 }
 
-export default function Card(){
+export default function Details(){
   const movie: Movie = {
     id: '1',
     title: 'RRR',
@@ -36,12 +38,18 @@ export default function Card(){
     ],
     IMDB: 9.9,
     synopsis: 'It centers around two real-life Indian revolutionaries, Alluri Sitarama Raju (Charan) and Komaram Bheem (Rama Rao), their fictional friendship and their fight against the British Raj.',
+    director: 'S.S. Rajamouli',
+    cast: [
+        'Jr NTR,',
+        'Ram Charan,',
+        'Alia Bhatt'
+    ]
 
   }
   
   useEffect(()=>{
     movies()
-  }, [])
+  })
 
   return (
     <div className={styles.card}>
@@ -70,7 +78,16 @@ export default function Card(){
           
         </div>
         <p className={styles.synopsis}>{movie.synopsis}</p>
-        <Link href={`/summary/${movie.id}`}>View Details</Link>
+        <span>Director: {movie.director}</span>
+        <div className={styles.casts}>
+            <span>Cast:</span>
+            <div className={styles.cast}>
+            {movie.cast.map((cast,index)=>{
+            return (
+              <p key={`cast-${index}`}>{cast}</p>
+            )})}
+            </div>
+        </div>
       </div>
     </div>
   )
