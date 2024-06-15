@@ -33,6 +33,15 @@
   gap: 0.5rem;
 }
 
+.viewDetails {
+  padding: 0.5rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+
+}
 
 
 .synopsis {

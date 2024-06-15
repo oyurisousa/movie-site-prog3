@@ -53,7 +53,7 @@ export default function Home() {
       const moviesList = await getMovies(1);
       const processedMovies = moviesList.map((movie: MovieResponse) => {
         const movieGenres = movie.genre_ids.map((id) => {
-          const genre = genresList.find((g) => g.id === id);
+          const genre = genresList.find((g: any) => g.id === id);
           return genre ? genre.name : "Unknown";
         });
 

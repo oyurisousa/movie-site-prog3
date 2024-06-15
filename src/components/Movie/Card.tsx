@@ -54,7 +54,7 @@ export default function Card({movie}:CardProps){
           
         </div>
         <p className={styles.synopsis}>{movie.synopsis}</p>
-        <Link href={`/summary/${movie.id}`}>View Details</Link>
+        <Link className={styles.viewDetails} href={`/summary/${movie.id}`}>View Details</Link>
       </div>
     </div>
   )
