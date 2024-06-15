@@ -9,44 +9,28 @@ import api from '@/utils/api'
 import { useEffect } from 'react'
 import Link from 'next/link'
 
-interface Movie{
+export interface Movie{
   id: string,
   title: string,
   genres: string[],
   IMDB: number,
-  synopsis: string
+  synopsis: string,
+  poster_path: string
+
 }
 
-const movies = async ()=>{
-  const data = await api.get('/discover/movie')
-    .then(response => response.data)
-    .catch(err=> console.log(err))
-  
-  console.log(data)
+interface CardProps{
+  movie: Movie
 }
 
-export default function Card(){
-  const movie: Movie = {
-    id: '1',
-    title: 'RRR',
-    genres: [
-      'Action',
-      'Fiction',
-      'Golden Global Winner'
-    ],
-    IMDB: 9.9,
-    synopsis: 'It centers around two real-life Indian revolutionaries, Alluri Sitarama Raju (Charan) and Komaram Bheem (Rama Rao), their fictional friendship and their fight against the British Raj.',
-
-  }
+export default function Card({movie}:CardProps){
   
-  useEffect(()=>{
-    movies()
-  }, [])
+  
 
   return (
     <div className={styles.card}>
       <Image
-        src={banner}
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt=''
         width={150}
         height={235}

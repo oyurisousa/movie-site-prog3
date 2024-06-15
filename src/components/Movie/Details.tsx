@@ -5,9 +5,7 @@ import styles from './Card.module.css'
 import banner from '../../../public/test.png'
 import ButtonCategory from '../Buttons/ButtonCategory'
 import imdb from '../../../public/imdb.svg'
-import api from '@/utils/api'
-import { useEffect } from 'react'
-import { Space_Mono } from 'next/font/google'
+
 
 interface Movie{
   id: string,
@@ -19,13 +17,7 @@ interface Movie{
   cast: string[]
 }
 
-const movies = async ()=>{
-  const data = await api.get('/discover/movie')
-    .then(response => response.data)
-    .catch(err=> console.log(err))
-  
-  console.log(data)
-}
+
 
 export default function Details(){
   const movie: Movie = {
@@ -46,10 +38,7 @@ export default function Details(){
     ]
 
   }
-  
-  useEffect(()=>{
-    movies()
-  })
+
 
   return (
     <div className={styles.card}>
@@ -80,7 +69,7 @@ export default function Details(){
         <p className={styles.synopsis}>{movie.synopsis}</p>
         <span>Director: {movie.director}</span>
         <div className={styles.casts}>
-            <span>Cast:</span>
+            <span>Cast: &nbsp;</span>
             <div className={styles.cast}>
             {movie.cast.map((cast,index)=>{
             return (
