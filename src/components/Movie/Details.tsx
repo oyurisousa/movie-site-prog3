@@ -2,11 +2,8 @@
 
 import Image from 'next/image'
 import styles from './Card.module.css'
-import banner from '../../../public/test.png'
 import ButtonCategory from '../Buttons/ButtonCategory'
 import imdb from '../../../public/imdb.svg'
-import api from '@/utils/api'
-import { useEffect } from 'react'
 
 
 interface Movie{
@@ -15,57 +12,28 @@ interface Movie{
   genres: string[],
   IMDB: number,
   synopsis: string,
-  director: string,
-  cast: string[]
+  poster_path: string
+  // director: string,
+  // cast: string[]
 }
+// id: movie.id,
+//       title: movie.title,
+//       genres: movie.genres.map((genre: any) => genre.name),
+//       IMDB: movie.vote_average.toFixed(1),
+//       synopsis: movie.overview,
+//       poster_path: movie.poster_path,
 
 interface DetailsProps{
-  params: {
-    id: string
-  }
+  movie: Movie
 }
 
 
-const getMovieById = async (id: number | string) => {
-  try {
-    const response = await api.get(`/movie/${id}`);
-    return response.data;
-  } catch (err) {
-    console.error(err);
-    return [];
-  }
-};
-
-export default function Details({params}: DetailsProps){
-  // const movie: Movie = {
-  //   id: '1',
-  //   title: 'RRR',
-  //   genres: [
-  //     'Action',
-  //     'Fiction',
-  //     'Golden Global Winner'
-  //   ],
-  //   IMDB: 9.9,
-  //   synopsis: 'It centers around two real-life Indian revolutionaries, Alluri Sitarama Raju (Charan) and Komaram Bheem (Rama Rao), their fictional friendship and their fight against the British Raj.',
-  //   director: 'S.S. Rajamouli',
-  //   cast: [
-  //       'Jr NTR,',
-  //       'Ram Charan,',
-  //       'Alia Bhatt'
-  //   ]
-
-  // }
-  let movie
-  useEffect(()=>{
-    movie = ()=>{
-    return getMovieById(params.id)
-    }
-  })
+export default function Details({movie}: DetailsProps){
   
   return (
     <div className={styles.card}>
       <Image
-        src={banner}
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt=''
         width={150}
         height={235}
@@ -76,7 +44,7 @@ export default function Details({params}: DetailsProps){
         <div className={styles.genre}>
           {movie.genres.map((genre, index)=>{
             return (
-              <ButtonCategory key={`genre-${index}`}>{genre.name}</ButtonCategory>
+              <ButtonCategory key={`genre-${index}`}>{genre}</ButtonCategory>
             )
           })}
         </div>
@@ -89,14 +57,17 @@ export default function Details({params}: DetailsProps){
           
         </div>
         <p className={styles.synopsis}>{movie.synopsis}</p>
-        <span>Director: {movie.director}</span>
+        {/* <span>Director: {movie.director}</span> */}
+        <span>Director: joão</span>
         <div className={styles.casts}>
             <span>Cast: &nbsp;</span>
             <div className={styles.cast}>
-            {movie.cast.map((cast,index)=>{
+            {/* {movie.cast.map((cast,index)=>{
             return (
               <p key={`cast-${index}`}>{cast}</p>
-            )})}
+            )})} */}
+            <p>actor1</p>
+            <p>actor2</p>
             </div>
         </div>
       </div>

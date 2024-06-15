@@ -62,7 +62,7 @@ export default function Home() {
           title: movie.title,
           genres: movieGenres,
           IMDB: movie.vote_average.toFixed(1),
-          synopsis: truncateText(movie.overview, 100),  // Truncar para 100 caracteres, por exemplo
+          synopsis: truncateText(movie.overview, 100),  
           poster_path: movie.poster_path,
         };
       });
@@ -71,7 +71,7 @@ export default function Home() {
     };
 
     fetchData();
-  }, []);  // A dependência vazia [] garante que isso seja executado apenas uma vez após o componente montar
+  }, []);  
 
   return (
     <main>
