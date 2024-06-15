@@ -1,9 +1,13 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './Card.module.css'
 import banner from '../../../public/test.png'
 import ButtonCategory from '../Buttons/ButtonCategory'
 import imdb from '../../../public/imdb.svg'
 import ButtonStandard from '../Buttons/ButtonStandard'
+import api from '@/utils/api'
+import { useEffect } from 'react'
 
 interface Movie{
   title: string,
@@ -11,6 +15,15 @@ interface Movie{
   IMDB: number,
   synopsis: string
 }
+
+const movies = async ()=>{
+  const data = await api.get('/discover/movie')
+    .then(response => response.data)
+    .catch(err=> console.log(err))
+  
+  console.log(data)
+}
+
 export default function Card(){
   const movie: Movie = {
     title: 'RRR',
@@ -23,7 +36,10 @@ export default function Card(){
     synopsis: 'It centers around two real-life Indian revolutionaries, Alluri Sitarama Raju (Charan) and Komaram Bheem (Rama Rao), their fictional friendship and their fight against the British Raj.',
 
   }
-
+  
+  useEffect(()=>{
+    movies()
+  }, [])
 
   return (
     <div className={styles.card}>
