@@ -1,77 +1,83 @@
 'use client'
+import { useEffect, useState } from "react";
 import Card, { Movie } from "@/components/Movie/Card";
 import api from "@/utils/api";
-import { useEffect, useState } from "react";
 
-interface Genre{
-  id: number,
-  name: string
+interface Genre {
+  id: number;
+  name: string;
 }
 
-const getMovies = async (page: number)=>{
-  const data = await api.get(`/discover/movie?page=${page}&primary_realease_year=2024`)
-    .then(response => response.data)
-    .catch(err=> console.log(err))
-  
-  console.log(data)
-  return data.results
+interface MovieResponse {
+  id: number;
+  title: string;
+  genre_ids: number[];
+  vote_average: number;
+  overview: string;
+  poster_path: string;
 }
 
-const getGenres = async ()=>{
-  const data = await api.get(`/genre/movie/list`)
-    .then(response => response.data)
-    .catch(err=> console.log(err))
+const getMovies = async (page: number) => {
+  try {
+    const response = await api.get(`/discover/movie?page=${page}&primary_release_year=2024`);
+    return response.data.results;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
 
-  return data.genres
-}
+const getGenres = async () => {
+  try {
+    const response = await api.get(`/genre/movie/list`);
+    return response.data.genres;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
+const truncateText = (text: string, maxLength: number) => {
+  return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+};
 
 export default function Home() {
-  const [movies, setMovies] = useState<Movie[]>([])
-  const [genres, setGenres] = useState<Genre[]>([])
-  
-    // getGenres().then(response =>{
-    //   const genresList = response.map((genre: any)=>{
-    //     genre = {
-    //       id: genre.id,
-    //       name: genre.name
-    //     }
-    //     return genre
-    //   })
-    //   setGenres(genresList)
-    // })
-  useEffect(()=>{
-    getMovies(1).then(response => {
-      const moviesList = response.map((movie: any)=>{
-        movie = {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const genresList = await getGenres();
+      setGenres(genresList);
+
+      const moviesList = await getMovies(1);
+      const processedMovies = moviesList.map((movie: MovieResponse) => {
+        const movieGenres = movie.genre_ids.map((id) => {
+          const genre = genresList.find((g) => g.id === id);
+          return genre ? genre.name : "Unknown";
+        });
+
+        return {
           id: movie.id,
           title: movie.title,
-          genres: movie.genre_ids.map((id: number)=>{
-            genres.map((genre)=>{
-              if(genre.id === id){
-                return genre.name
-              }
-            })
-          }),
+          genres: movieGenres,
           IMDB: movie.vote_average.toFixed(1),
-          synopsis: movie.overview,
-          poster_path: movie.poster_path
-        }
+          synopsis: truncateText(movie.overview, 100),  // Truncar para 100 caracteres, por exemplo
+          poster_path: movie.poster_path,
+        };
+      });
 
-        return movie
-      }) 
+      setMovies(processedMovies);
+    };
 
+    fetchData();
+  }, []);  // A dependência vazia [] garante que isso seja executado apenas uma vez após o componente montar
 
-      setMovies(moviesList)
-      console.log(movies)
-      console.log(response)
-      console.log(moviesList)
-    })
-  }, [genres, movies])
   return (
     <main>
-      {movies.map((movie, index)=>{     
-        return <Card key={`movie-${index}`} movie={movie}/>
-      })}
+      {movies.map((movie, index) => (
+        <Card key={`movie-${index}`} movie={movie} />
+      ))}
     </main>
-  )
+  );
 }
