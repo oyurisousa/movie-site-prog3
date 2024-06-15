@@ -4,12 +4,16 @@
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --black: #000000;
+  --gray: #9e9e9e;
   --white: #FFFFFF;
 
   --dark: #202020;
   --primary: #FF9800;
+
+  --yellow: #FDD835;
 }
 
 body {
   background-color: var(--dark);
+  color: var(--gray);
 }

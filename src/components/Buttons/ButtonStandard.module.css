@@ -1,6 +1,11 @@
 .buttonStandard {
-  width: 4rem;
+  min-width: 4rem;
   height: 2rem;
   border-radius: 1rem;
   border: 0;
+
+  cursor: pointer;
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 400;
 }

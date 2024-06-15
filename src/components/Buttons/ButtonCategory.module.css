@@ -1,0 +1,19 @@
+.buttonCategory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  min-width: 4rem;
+  height: 1.15rem;
+  border: 0;
+  padding: 0.6rem;
+
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 100;
+
+  color: var(--gray);
+  border-radius: 1rem;
+  border: 1px solid var(--gray);
+}
