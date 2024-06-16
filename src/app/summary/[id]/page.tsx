@@ -5,6 +5,7 @@ import styles from './Details.module.css'
 import Details from "@/components/Movie/Details";
 import api from '@/utils/api';
 import { Movie } from '@/components/Movie/Card';
+import Spinner from '@/components/Spinner/Spinner';
 
 // interface Movie {
 //   id: string;
@@ -53,7 +54,7 @@ export default function DetailsMovie({ params }: DetailsMovieProps) {
   }, [params.id]);
 
   if (!movie) {
-    return <div>Loading...</div>; 
+    return (<Spinner/>); 
   }
 
   return (
