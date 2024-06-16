@@ -125,7 +125,7 @@ export default function Home({ searchParams }: HomeProps) {
     setTimeout(() => {
       setMovies(processedMovies || []);
       setIsLoading(false);
-    }, 500); // Simulando atraso de carregamento
+    }, 500);
   };
 
   useEffect(() => {
