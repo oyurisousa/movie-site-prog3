@@ -1,6 +1,6 @@
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import Link from "next/link";
-
+import styles from './Paginator.module.css'
 interface PaginatorProps {
   endpoint: string;
   page: number;
@@ -18,52 +18,27 @@ export default function Paginator({
   const endItem = Math.min(page * numberOfItemsPerPage, totalNumberPages * numberOfItemsPerPage);
 
   return (
-    <nav>
+    <nav className={styles.nav}>
       <span>Itens por página: {numberOfItemsPerPage}</span>
       <br />
       <span>{startItem} - {endItem} de {totalNumberPages * numberOfItemsPerPage}</span>
       <div>
         {page > 1 ? (
           <Link href={`${endpoint}?page=${page - 1}`}>
-            <CaretLeft />
+            <CaretLeft size={32} color="white"/>
           </Link>
         ) : (
-          <span><CaretLeft /></span>
+          <span><CaretLeft size={32} color="#00000050"/></span>
         )}
         {page < totalNumberPages ? (
           <Link href={`${endpoint}?page=${page + 1}`}>
-            <CaretRight />
+            <CaretRight size={32} color="white" />
           </Link>
         ) : (
-          <span><CaretRight /></span>
+          <span><CaretRight size={32} color="#00000050" /></span>
         )}
       </div>
     </nav>
   );
 }
 
-
-// import { CaretLeft, CaretRight } from "@phosphor-icons/react"
-// import Link from "next/link"
-
-// interface PaginatorProps{
-//   endpoint: string
-//   page: number,
-//   totalNumberPages: number
-//   numberOfItemsPerPage: number
-// }
-
-// export default function Paginator({endpoint, page,totalNumberPages, numberOfItemsPerPage = 20}: PaginatorProps){
-//   return (
-//     <nav>
-//       <span>Itens por página {numberOfItemsPerPage}</span>
-//       <br />
-//       <span>{((page-1) * numberOfItemsPerPage) + 1} - {page  * numberOfItemsPerPage} of {totalNumberPages}</span>
-//       <div>
-//         <Link href={`${endpoint}?page=${page-1}`}><CaretLeft/></Link>
-//         <Link href={`${endpoint}?page=${page+1}`}><CaretRight/></Link>
-//       </div>
-//     </nav>
-
-//   )
-// }

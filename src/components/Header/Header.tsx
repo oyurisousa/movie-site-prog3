@@ -12,7 +12,7 @@ export default function Header(){
       
       <nav className={styles.nav}>
         <Link href="/">
-          All Films
+          <ButtonNav>Films</ButtonNav>
         </Link>
         <ButtonNav>Watchlist</ButtonNav>
         <ButtonStandard color='#FF9800'>Login</ButtonStandard>

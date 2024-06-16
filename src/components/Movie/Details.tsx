@@ -57,19 +57,7 @@ export default function Details({movie}: DetailsProps){
           
         </div>
         <p className={styles.synopsis}>{movie.synopsis}</p>
-        {/* <span>Director: {movie.director}</span> */}
-        <span>Director: joão</span>
-        <div className={styles.casts}>
-            <span>Cast: &nbsp;</span>
-            <div className={styles.cast}>
-            {/* {movie.cast.map((cast,index)=>{
-            return (
-              <p key={`cast-${index}`}>{cast}</p>
-            )})} */}
-            <p>actor1</p>
-            <p>actor2</p>
-            </div>
-        </div>
+        
       </div>
     </div>
   )
