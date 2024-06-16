@@ -13,15 +13,8 @@ interface Movie{
   IMDB: number,
   synopsis: string,
   poster_path: string
-  // director: string,
-  // cast: string[]
 }
-// id: movie.id,
-//       title: movie.title,
-//       genres: movie.genres.map((genre: any) => genre.name),
-//       IMDB: movie.vote_average.toFixed(1),
-//       synopsis: movie.overview,
-//       poster_path: movie.poster_path,
+
 
 interface DetailsProps{
   movie: Movie
