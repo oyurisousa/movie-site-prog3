@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Card, { Movie } from "@/components/Movie/Card";
 import api from "@/utils/api";
+import Paginator from "@/components/Paginator/Paginator";
 
 interface Genre {
   id: number;
@@ -16,14 +17,26 @@ interface MovieResponse {
   overview: string;
   poster_path: string;
 }
+interface getMoviesResponse{
+  data: object[],
+  page: number,
+  totalPages: number,
+  totalResults: number
+}
 
-const getMovies = async (page: number) => {
+const getMovies = async (page: number | string = 1): Promise<getMoviesResponse | null>=> {
   try {
     const response = await api.get(`/discover/movie?page=${page}&primary_release_year=2024`);
-    return response.data.results;
+    return {
+      data: response.data.results,
+      page: response.data.page,
+      totalPages: response.data.total_pages,
+      totalResults: response.data.total_results,
+
+    }
   } catch (err) {
     console.error(err);
-    return [];
+    return null;
   }
 };
 
@@ -41,18 +54,36 @@ const truncateText = (text: string, maxLength: number) => {
   return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
 };
 
-export default function Home() {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [genres, setGenres] = useState<Genre[]>([]);
+interface HomeProps{
+  searchParams: {
+    page?: string
+  }
+}
 
+export default function Home({searchParams}:HomeProps) {
+  const [movies, setMovies] = useState<Movie[] >([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
+  const [pagination, setPagination] = useState({
+    page: 0,
+    totalNumberPages: 0,
+    totalNumberResults: 0
+  })
+
+  const {page} = searchParams
+  
   useEffect(() => {
     const fetchData = async () => {
       const genresList = await getGenres();
       setGenres(genresList);
 
-      const moviesList = await getMovies(1);
-      const processedMovies = moviesList.map((movie: MovieResponse) => {
-        const movieGenres = movie.genre_ids.map((id) => {
+      const moviesList = await getMovies(page);
+      setPagination({
+        page: moviesList?.page || 0,
+        totalNumberPages: moviesList?.totalPages || 0,
+        totalNumberResults: moviesList?.totalResults || 0
+      })
+      const processedMovies = moviesList?.data.map((movie: any) => {
+        const movieGenres = movie.genre_ids.map((id: any) => {
           const genre = genresList.find((g: any) => g.id === id);
           return genre ? genre.name : "Unknown";
         });
@@ -64,6 +95,7 @@ export default function Home() {
           IMDB: movie.vote_average.toFixed(1),
           synopsis: truncateText(movie.overview, 100),  
           poster_path: movie.poster_path,
+
         };
       });
 
@@ -71,13 +103,24 @@ export default function Home() {
     };
 
     fetchData();
-  }, []);  
+  }, [page]);  
 
   return (
     <main>
-      {movies.map((movie, index) => (
-        <Card key={`movie-${index}`} movie={movie} />
-      ))}
+      <div>
+        {movies.map((movie, index) => (
+          <Card key={`movie-${index}`} movie={movie} />
+        ))}
+      </div>
+
+      <Paginator 
+        endpoint="/" 
+        numberOfItemsPerPage={20} 
+        page={pagination.page}
+        totalNumberPages={pagination.totalNumberPages}
+      />
+
+
     </main>
   );
 }
