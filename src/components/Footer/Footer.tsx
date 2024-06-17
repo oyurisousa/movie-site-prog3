@@ -6,7 +6,7 @@ export default function Footer(){
       
       Matheus Araújo Carvalho,
       Carlos Yuri Brito Sousa,
-      Kaio Fontenele
+      Kaio Felipe Castro Fontenele
     </footer>
   )
 }
