@@ -1,0 +1,52 @@
+/* components/Search/search.module.css */
+
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .searchInput {
+    min-width: 10rem; /* Reduzida de 15rem para 10rem */
+    height: 1.15rem; /* Reduzida de 2.5rem para 2rem */
+    padding: 0.4rem 0.8rem; /* Ajuste nas margens internas */
+    font-size: 0.875rem; /* Levemente menor, de 1rem para 0.875rem */
+    color: var(--gray);
+    border: 1px solid var(--gray);
+    border-radius: 1rem;
+    outline: none;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  .searchInput:focus {
+    border-color: var(--primary-color);
+  }
+  
+  .searchButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: 2rem; /* Reduzida de 4rem para 3.5rem */
+    height: 2rem; /* Reduzida de 2.5rem para 2rem */
+    padding: 0.5rem; /* Ajuste nas margens internas */
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 100;
+    color: var(--gray);
+    background-color: #fff;
+    border-radius: 1rem;
+    border: 1px solid var(--gray);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .searchButton:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+  }
+  
+  
