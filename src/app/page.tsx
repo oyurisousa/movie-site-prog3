@@ -1,5 +1,3 @@
-// app/page.tsx
-
 'use client';
 import { useEffect, useState } from 'react';
 import Card, { Movie } from "@/components/Movie/Card";
@@ -106,7 +104,7 @@ export default function Home({ searchParams }: HomeProps) {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
-  const [submittedTitle, setSubmittedTitle] = useState(""); // Valor submetido para a busca
+  const [submittedTitle, setSubmittedTitle] = useState("");
 
   const { page } = searchParams;
 
@@ -120,7 +118,7 @@ export default function Home({ searchParams }: HomeProps) {
     if (genre) {
       moviesList = await getMoviesByGenres(page, [genre]);
     } else if (title) {
-      moviesList = await getMoviesByTitle(title, page); // Usar o título para buscar filmes
+      moviesList = await getMoviesByTitle(title, page);
     } else {
       moviesList = await getMovies(page);
     }

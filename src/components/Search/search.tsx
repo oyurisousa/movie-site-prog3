@@ -1,5 +1,3 @@
-// components/Search/Search.tsx
-
 'use client';
 import { useState } from 'react';
 import styles from './search.module.css';
