@@ -8,7 +8,7 @@ import Footer from "@/components/Footer/Footer";
 import styles from "./page.module.css";
 import Search from '@/components/Search/search';
 
-interface Genre {
+export interface Genre {
   id: number;
   name: string;
 }
@@ -74,9 +74,9 @@ const getMoviesByTitle = async (title: string, page: number | string = 1): Promi
   }
 };
 
-const getGenres = async () => {
+export const getGenres = async (type: 'tv' | 'movie') => {
   try {
-    const response = await api.get(`/genre/movie/list`);
+    const response = await api.get(`/genre/${type}/list`);
     return response.data.genres;
   } catch (err) {
     console.error(err);
@@ -84,7 +84,7 @@ const getGenres = async () => {
   }
 };
 
-const truncateText = (text: string, maxLength: number) => {
+export const truncateText = (text: string, maxLength: number) => {
   return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
 };
 
@@ -111,7 +111,7 @@ export default function Home({ searchParams }: HomeProps) {
   const fetchMovies = async (genre: number | null, title: string, page: number | string = 1) => {
     setIsLoading(true);
 
-    const genresList = await getGenres();
+    const genresList = await getGenres('movie');
     setGenres(genresList);
 
     let moviesList;
@@ -140,10 +140,9 @@ export default function Home({ searchParams }: HomeProps) {
       poster_path: movie.poster_path,
     }));
 
-    setTimeout(() => {
-      setMovies(processedMovies || []);
-      setIsLoading(false);
-    }, 500);
+    setMovies(processedMovies || []);
+    setIsLoading(false);
+
   };
 
   useEffect(() => {
