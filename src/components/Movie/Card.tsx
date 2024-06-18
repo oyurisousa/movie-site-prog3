@@ -44,6 +44,8 @@ export default function Card({movie}:CardProps){
               <ButtonCategory key={`genre-${index}`}>{genre}</ButtonCategory>
             )
           })}
+          {/*<ButtonCategory key={`genre-${1}`}>{movie.genres[0]}</ButtonCategory>
+          <ButtonCategory key={`genre-${2}`}>{movie.genres[1]}</ButtonCategory>*/}
         </div>
         <div className={styles.imdb}>
           <Image src={imdb} alt=''/>

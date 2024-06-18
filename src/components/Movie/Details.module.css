@@ -1,0 +1,60 @@
+.card {
+    width: 100%;
+    max-width: 67.5rem;
+    display: flex;
+    gap: 1rem;
+    margin: 0 auto;
+  }
+  
+  .cardInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+  }
+  
+  .genre {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .title {
+    color: var(--white);
+    font-weight: bold;
+  }
+  
+  .imdb {
+    color: var(--yellow);
+    font-size: 0.8rem;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .viewDetails {
+    padding: 0.5rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+  
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
+  
+  }
+  
+  
+  .synopsis {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .casts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cast {
+    display: flex;
+  }

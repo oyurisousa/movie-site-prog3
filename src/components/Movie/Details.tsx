@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import styles from './Card.module.css'
+import styles from './Details.module.css'
 import ButtonCategory from '../Buttons/ButtonCategory'
 import imdb from '../../../public/imdb.svg'
 

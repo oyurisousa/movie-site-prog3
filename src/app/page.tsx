@@ -137,7 +137,6 @@ export default function Home({ searchParams }: HomeProps) {
         return genre ? genre.name : "Unknown";
       }),
       IMDB: movie.vote_average.toFixed(1),
-      synopsis: truncateText(movie.overview, 100),
       poster_path: movie.poster_path,
     }));
 

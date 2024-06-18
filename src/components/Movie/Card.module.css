@@ -1,32 +1,50 @@
 .card {
   width: 100%;
-  max-width: 67.5rem;
+  max-width: 200px;
   display: flex;
-  gap: 1rem;
-  margin: 0 auto;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: var(--dark);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  align-items: center;
+  text-align: center;
+  min-height: 25rem;
+  border: 1px solid var(--primary);
+  justify-content: space-between;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
 }
 
 .cardInfo {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: start;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
 }
 
 .genre {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .title {
   color: var(--white);
   font-weight: bold;
+  text-align: center;
 }
 
 .imdb {
   color: var(--yellow);
   font-size: 0.8rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,24 +55,13 @@
   padding: 0.5rem;
   background-color: var(--white);
   border-radius: 1rem;
-
   text-decoration: none;
   color: rgba(0, 0, 0, 0.87);
-
+  display: inline-block;
 }
-
 
 .synopsis {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin: 0;
-}
-
-.casts {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cast {
-  display: flex;
+  color: var(--light-gray);
 }
