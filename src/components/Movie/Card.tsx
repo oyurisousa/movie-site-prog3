@@ -2,11 +2,8 @@
 
 import Image from 'next/image'
 import styles from './Card.module.css'
-import banner from '../../../public/test.png'
 import ButtonCategory from '../Buttons/ButtonCategory'
 import imdb from '../../../public/imdb.svg'
-import api from '@/utils/api'
-import { useEffect } from 'react'
 import Link from 'next/link'
 
 export interface Movie {
@@ -44,8 +41,7 @@ export default function Card({ movie }: CardProps) {
               <ButtonCategory key={`genre-${index}`}>{genre}</ButtonCategory>
             )
           })}
-          {/*<ButtonCategory key={`genre-${1}`}>{movie.genres[0]}</ButtonCategory>
-          <ButtonCategory key={`genre-${2}`}>{movie.genres[1]}</ButtonCategory>*/}
+
         </div>
         <div className={styles.imdb}>
           <Image src={imdb} alt='' />

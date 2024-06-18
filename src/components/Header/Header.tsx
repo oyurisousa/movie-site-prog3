@@ -17,6 +17,9 @@ export default function Header() {
         <Link href='/series'>
           <ButtonNav>Series</ButtonNav>
         </Link>
+        <Link href='/authors'>
+          <ButtonNav>Authors</ButtonNav>
+        </Link>
         <ButtonStandard color='#FF9800'>Login</ButtonStandard>
       </nav>
 

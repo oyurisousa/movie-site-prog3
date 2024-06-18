@@ -1,11 +1,57 @@
 .main {
   display: flex;
+  flex-direction: column;
   max-width: 80rem;
   margin: 0 auto;
   justify-content: space-between;
   align-items: start;
   flex-wrap: wrap;
   flex: 1;
+}
 
+.cards {
+  max-width: 80rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  margin: 0 auto;
+}
 
+.top {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filterGenre {
+  width: 12rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--dark);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--gray);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 0.8rem;
+}
+
+.filterGenre option {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.filterGenre:hover {
+  background-color: var(--light-gray);
 }

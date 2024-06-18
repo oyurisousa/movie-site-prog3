@@ -6,7 +6,7 @@ import ButtonCategory from '../Buttons/ButtonCategory'
 import imdb from '../../../public/imdb.svg'
 
 
-interface Movie{
+interface Movie {
   id: string,
   title: string,
   genres: string[],
@@ -15,14 +15,23 @@ interface Movie{
   poster_path: string
 }
 
+interface Serie {
+  id: string,
+  name: string,
+  genres: string[],
+  IMDB: number,
+  synopsis: string,
+  poster_path: string
+}
 
-interface DetailsProps{
-  movie: Movie
+interface DetailsProps {
+  movie: Movie | Serie
+  type?: 'movie' | 'tv'
 }
 
 
-export default function Details({movie}: DetailsProps){
-  
+export default function Details({ movie, type = 'movie' }: DetailsProps) {
+  console.log(movie)
   return (
     <div className={styles.card}>
       <Image
@@ -33,24 +42,30 @@ export default function Details({movie}: DetailsProps){
       />
 
       <div className={styles.cardInfo}>
-        <span className={styles.title}>{movie.title}</span>  
+        {type === 'movie' ? (
+          <span className={styles.title}>{movie.title}</span>
+
+        ) : (
+          <span className={styles.title}>{movie.name}</span>
+
+        )}
         <div className={styles.genre}>
-          {movie.genres.map((genre, index)=>{
+          {movie.genres.map((genre, index) => {
             return (
               <ButtonCategory key={`genre-${index}`}>{genre}</ButtonCategory>
             )
           })}
         </div>
         <div className={styles.imdb}>
-          <Image src={imdb} alt=''/>
+          <Image src={imdb} alt='' />
           <div className={styles.star}>
-            {movie.IMDB}   
+            {movie.IMDB}
             ★
           </div>
-          
+
         </div>
         <p className={styles.synopsis}>{movie.synopsis}</p>
-        
+
       </div>
     </div>
   )

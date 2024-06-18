@@ -4,7 +4,6 @@ import Card, { Movie } from "@/components/Movie/Card";
 import api from "@/utils/api";
 import Paginator from "@/components/Paginator/Paginator";
 import Spinner from "@/components/Spinner/Spinner";
-import Footer from "@/components/Footer/Footer";
 import styles from "./page.module.css";
 import Search from '@/components/Search/search';
 

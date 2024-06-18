@@ -20,6 +20,7 @@ export const getMovieById = async (id: number | string, type: 'movie' | 'tv'): P
     return {
       id: movie.id,
       title: movie.title,
+      name: movie.name,
       genres: movie.genres.map((genre: any) => genre.name),
       IMDB: movie.vote_average.toFixed(1),
       synopsis: movie.overview,
