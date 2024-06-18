@@ -8,14 +8,14 @@ import Link from 'next/link'
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Image src={logo} alt='as' />
+      <Image src={logo} alt='Logo' />
 
       <nav className={styles.nav}>
         <Link href="/">
           <ButtonNav>Films</ButtonNav>
         </Link>
         <Link href='/series'>
-          <ButtonNav>Watchlist</ButtonNav>
+          <ButtonNav>Series</ButtonNav>
         </Link>
         <ButtonStandard color='#FF9800'>Login</ButtonStandard>
       </nav>

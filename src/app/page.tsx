@@ -133,7 +133,7 @@ export default function Home({ searchParams }: HomeProps) {
       id: movie.id,
       title: movie.title,
       genres: movie.genre_ids.map((id) => {
-        const genre = genresList.find((g) => g.id === id);
+        const genre = genresList.find((genre: Genre) => genre.id === id);
         return genre ? genre.name : "Unknown";
       }),
       IMDB: movie.vote_average.toFixed(1),
@@ -165,14 +165,19 @@ export default function Home({ searchParams }: HomeProps) {
           <Spinner />
         ) : (
           <>
-            <h2>All Films</h2>
-            <Search onSearchSubmit={handleSearchSubmit} />
-            <select className={styles.filterGenre} title="genres" name="genres" id="genres" onChange={handleGenreChange}>
-              <option value="">All Genres</option>
-              {genres.map((genre) => (
-                <option key={`genre-${genre.id}`} value={genre.id}>{genre.name}</option>
-              ))}
-            </select>
+            <div className={styles.top}>
+              <h2>All Films({pagination.totalNumberResults})</h2>
+              <div className={styles.filters}>
+                <select className={styles.filterGenre} title="genres" name="genres" id="genres" onChange={handleGenreChange} value={selectedGenre || ""}>
+                  <option value="">All Genres</option>
+                  {genres.map((genre) => (
+                    <option key={`genre-${genre.id}`} value={genre.id}>{genre.name}</option>
+                  ))}
+                </select>
+                <Search onSearchSubmit={handleSearchSubmit} />
+              </div>
+
+            </div>
             <div className={styles.cards}>
               {movies.map((movie, index) => (
                 <Card key={`movie-${index}`} movie={movie} />

@@ -1,3 +1,24 @@
+.main {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+
+}
+
+.top {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 1px solid red;
+}
+
 .cards {
   max-width: 80rem;
   display: flex;
@@ -49,4 +70,14 @@
 
 .filterGenre:hover {
   background-color: var(--light-gray);
+}
+
+
+
+@media (max-width: 375px) {
+  .filters {
+    flex-direction: column-reverse;
+
+    gap: 1rem;
+  }
 }
