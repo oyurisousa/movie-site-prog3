@@ -189,7 +189,6 @@ export default function Home({ searchParams }: HomeProps) {
           </>
         )}
       </main>
-      <Footer />
     </>
   );
 }
