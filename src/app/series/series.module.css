@@ -1,5 +1,7 @@
 .main {
   display: flex;
+  max-width: 80rem;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: start;
   flex-wrap: wrap;

@@ -9,7 +9,7 @@ import api from '@/utils/api'
 import { useEffect } from 'react'
 import Link from 'next/link'
 
-export interface Movie{
+export interface Movie {
   id: string,
   title: string,
   genres: string[],
@@ -19,13 +19,13 @@ export interface Movie{
 
 }
 
-interface CardProps{
+interface CardProps {
   movie: Movie
 }
 
-export default function Card({movie}:CardProps){
-  
-  
+export default function Card({ movie }: CardProps) {
+
+
 
   return (
     <div className={styles.card}>
@@ -33,13 +33,13 @@ export default function Card({movie}:CardProps){
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt=''
         width={150}
-        height={235}
+        height={300}
       />
 
       <div className={styles.cardInfo}>
-        <span className={styles.title}>{movie.title}</span>  
+        <span className={styles.title}>{movie.title}</span>
         <div className={styles.genre}>
-          {movie.genres.map((genre, index)=>{
+          {movie.genres.map((genre, index) => {
             return (
               <ButtonCategory key={`genre-${index}`}>{genre}</ButtonCategory>
             )
@@ -48,12 +48,12 @@ export default function Card({movie}:CardProps){
           <ButtonCategory key={`genre-${2}`}>{movie.genres[1]}</ButtonCategory>*/}
         </div>
         <div className={styles.imdb}>
-          <Image src={imdb} alt=''/>
+          <Image src={imdb} alt='' />
           <div className={styles.star}>
-            {movie.IMDB}   
+            {movie.IMDB}
             ★
           </div>
-          
+
         </div>
         <p className={styles.synopsis}>{movie.synopsis}</p>
         <Link className={styles.viewDetails} href={`/summary/${movie.id}`}>View Details</Link>

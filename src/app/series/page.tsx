@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Genre, getGenres, truncateText } from "../page";
 import SerieCard from "@/components/Serie/Serie";
 import styles from './series.module.css'
+import Card from "@/components/Movie/Card";
 
 export interface Serie {
   id: string;
@@ -84,18 +85,7 @@ const Series = ({ searchParams }: SeriesProps) => {
 
   useEffect(() => {
     fetchSeries(page);
-    // setSeries([{
-    //   id: '76479',
-    //   poster_path: '/2zmTngn1tYC1AvfnrFLhxeD82hz.jpg',
-    //   genres: [
-    //     'teste',
-    //     'teste',
-    //     'teste'
-    //   ],
-    //   IMDB: '78',
-    //   name: 'The boys',
-    //   synopsis: 'A group of vigilantes known informally as “The Boys” set out to take down corrupt superheroes with no more than blue-collar grit and a willingness to fight dirty'
-    // }])
+
   }, [page]);
 
   return (
@@ -106,7 +96,7 @@ const Series = ({ searchParams }: SeriesProps) => {
         ) : (
           series.map((serie: Serie) => (
             <>
-              <SerieCard key={`serie-${serie.id}`} serie={serie} />
+              <Card key={`serie-${serie.id}`} movie={serie} />
             </>
           ))
         )}

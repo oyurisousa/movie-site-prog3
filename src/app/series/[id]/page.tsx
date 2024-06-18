@@ -1,35 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import styles from './Details.module.css'
+import styles from './serieDetails.module.css'
 import Details from "@/components/Movie/Details";
 import api from '@/utils/api';
 import { Movie } from '@/components/Movie/Card';
 import Spinner from '@/components/Spinner/Spinner';
-
-export const getMovieById = async (id: number | string, type: 'movie' | 'tv'): Promise<Movie | null> => {
-  try {
-    let response
-    if (type === 'movie') {
-      response = await api.get(`/movie/${id}`);
-    } else {
-      response = await api.get(`/tv/${id}`);
-
-    }
-    const movie = response.data;
-    return {
-      id: movie.id,
-      title: movie.title,
-      genres: movie.genres.map((genre: any) => genre.name),
-      IMDB: movie.vote_average.toFixed(1),
-      synopsis: movie.overview,
-      poster_path: movie.poster_path,
-    };
-  } catch (err) {
-    console.error(err);
-    return null;
-  }
-};
+import { getMovieById } from '@/app/summary/[id]/page';
 
 interface DetailsMovieProps {
   params: {
@@ -42,7 +19,7 @@ export default function DetailsMovie({ params }: DetailsMovieProps) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedMovie = await getMovieById(params.id, 'movie');
+      const fetchedMovie = await getMovieById(params.id, 'tv');
       if (fetchedMovie) {
         setMovie(fetchedMovie);
       }
@@ -56,6 +33,7 @@ export default function DetailsMovie({ params }: DetailsMovieProps) {
 
   return (
     <main className={styles.details}>
+      <h1>TV Shows</h1>
       <Details movie={movie} />
     </main>
   );
